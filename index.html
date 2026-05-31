@@ -4,10 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>청운인 의약품 안전나라</title>
+<meta property="og:title" content="청운인 의약품 안전나라">
+<meta property="og:description" content="현대청운고 기숙사 학생만을 위한 복약 안전 서비스 💙">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nooyij-z.github.io/chungun-medication/">
+<meta name="description" content="현대청운고 기숙사 학생만을 위한 복약 안전 서비스 💙">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Gmarket+Sans:wght@300;500;700&display=swap" rel="stylesheet">
 <!-- Firebase SDK (compat 버전 — 일반 스크립트로 로드) -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
   const firebaseConfig = {
     apiKey: "AIzaSyDm5QO_1zFCofJXRJ0PIhHKPhG0j414j1I",
@@ -27,10 +32,10 @@
   --mint: #1565C0;
   --mint2: #0D47A1;
   --mint-glow: rgba(21,101,192,0.15);
-  --navy: #0A1628;
-  --navy2: #0F2040;
-  --navy3: #162d52;
-  --navy4: #1e3a6e;
+  --navy: #0D1F3C;
+  --navy2: #122448;
+  --navy3: #1A3260;
+  --navy4: #234078;
   --gray: #9CA3AF;
   --gray2: #6B7280;
   --light: #F9FAFB;
@@ -41,6 +46,23 @@
   --blue: #3B82F6;
   --purple: #8B5CF6;
 }
+body.light-mode {
+  --navy: #F0F4FF;
+  --navy2: #E8EEFF;
+  --navy3: #D8E4FF;
+  --navy4: #C8D8FF;
+  --gray: #4B5563;
+  --gray2: #6B7280;
+  --white: #1E3A6E;
+  --light: #1E3A6E;
+  --mint-glow: rgba(21,101,192,0.08);
+}
+body.light-mode input, body.light-mode select, body.light-mode textarea {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.15);
+  color: #1E3A6E;
+}
+body.light-mode input::placeholder, body.light-mode textarea::placeholder { color: #9CA3AF; }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Noto Sans KR',sans-serif; background:var(--navy); color:var(--white); min-height:100vh; }
 
@@ -76,7 +98,7 @@ select option { background:var(--navy2); }
 .tag-green { background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); color:var(--safe); }
 .tag-blue { background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); color:var(--blue); }
 .card {
-  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.07);
+  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.12);
   border-radius:20px; padding:24px;
 }
 .section-title { font-size:11px; font-weight:700; letter-spacing:3px; color:var(--mint); text-transform:uppercase; margin-bottom:16px; }
@@ -175,16 +197,16 @@ select option { background:var(--navy2); }
 
 .dashboard-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; margin-bottom:28px; }
 .stat-card {
-  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.07);
+  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.12);
   border-radius:16px; padding:20px; cursor:pointer; transition:all 0.2s;
 }
 .stat-card:hover { border-color:var(--mint); transform:translateY(-2px); }
 .stat-icon { font-size:28px; margin-bottom:10px; }
-.stat-num { font-size:28px; font-weight:900; color:var(--mint); }
+.stat-num { font-size:28px; font-weight:900; color:#64B5F6; }
 .stat-label { font-size:13px; color:var(--gray); margin-top:4px; }
 .quick-actions { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-bottom:28px; }
 .quick-btn {
-  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.07);
+  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.12);
   border-radius:16px; padding:20px 16px; cursor:pointer; transition:all 0.2s;
   text-align:center; color:var(--white);
 }
@@ -198,7 +220,7 @@ select option { background:var(--navy2); }
 .symptom-search-icon { position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:18px; }
 .symptom-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:10px; margin-bottom:24px; }
 .symptom-btn {
-  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.07);
+  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.12);
   border-radius:14px; padding:16px 12px; cursor:pointer; transition:all 0.2s;
   text-align:center; color:var(--white);
 }
@@ -235,7 +257,7 @@ select option { background:var(--navy2); }
 .my-drug-form { margin-bottom:28px; }
 .my-drug-list { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
 .drug-card {
-  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.07);
+  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.12);
   border-radius:16px; padding:20px; transition:all 0.2s;
 }
 .drug-card:hover { border-color:rgba(21,101,192,0.3); }
@@ -265,7 +287,7 @@ select option { background:var(--navy2); }
 .filter-chip.active { background:rgba(21,101,192,0.1); border-color:var(--mint); color:var(--mint); }
 .friend-drug-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:14px; }
 .friend-drug-card {
-  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.07);
+  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.12);
   border-radius:16px; padding:20px; transition:all 0.2s;
 }
 .friend-drug-card:hover { border-color:rgba(59,130,246,0.4); transform:translateY(-2px); }
@@ -301,7 +323,7 @@ select option { background:var(--navy2); }
 .record-timeline { display:flex; flex-direction:column; gap:12px; }
 .record-item {
   display:flex; align-items:center; gap:16px;
-  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.07);
+  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.12);
   border-radius:14px; padding:16px 20px;
 }
 .record-dot { width:10px; height:10px; border-radius:50%; background:var(--mint); flex-shrink:0; }
@@ -311,13 +333,13 @@ select option { background:var(--navy2); }
 .record-time-badge { font-size:11px; color:var(--gray2); white-space:nowrap; }
 .record-delete { background:none; border:none; color:var(--gray2); cursor:pointer; font-size:16px; transition:color 0.2s; }
 .record-delete:hover { color:var(--danger); }
-.add-record-form { background:var(--navy2); border:1.5px solid rgba(255,255,255,0.07); border-radius:16px; padding:20px; margin-bottom:20px; }
+.add-record-form { background:var(--navy2); border:1.5px solid rgba(255,255,255,0.12); border-radius:16px; padding:20px; margin-bottom:20px; }
 .add-record-form h3 { font-size:14px; font-weight:700; margin-bottom:14px; }
 .add-record-row { display:grid; grid-template-columns:1fr 1fr auto; gap:10px; align-items:end; }
 
 .health-tips { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; }
 .health-tip-card {
-  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.07);
+  background:var(--navy2); border:1.5px solid rgba(255,255,255,0.12);
   border-radius:16px; padding:22px; transition:all 0.2s;
 }
 .health-tip-card:hover { transform:translateY(-2px); }
@@ -358,6 +380,26 @@ select option { background:var(--navy2); }
   .quick-actions { grid-template-columns:1fr 1fr; }
   .add-record-row { grid-template-columns:1fr; }
 }
+
+/* 채팅 */
+.chat-room-list { display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+.chat-room-item { background:var(--navy2); border:1.5px solid rgba(255,255,255,0.12); border-radius:14px; padding:16px 20px; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; justify-content:space-between; }
+.chat-room-item:hover { border-color:var(--mint); }
+.chat-messages { display:flex; flex-direction:column; gap:10px; padding:16px 0; min-height:300px; max-height:400px; overflow-y:auto; }
+.chat-msg { display:flex; gap:10px; }
+.chat-msg.mine { flex-direction:row-reverse; }
+.chat-bubble { max-width:70%; padding:10px 14px; border-radius:16px; font-size:13px; line-height:1.6; }
+.chat-msg.mine .chat-bubble { background:var(--mint); color:#fff; border-bottom-right-radius:4px; }
+.chat-msg:not(.mine) .chat-bubble { background:var(--navy3); color:var(--white); border-bottom-left-radius:4px; }
+.chat-input-row { display:flex; gap:10px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); margin-top:8px; }
+.chat-input-row input { flex:1; }
+/* 알림 뱃지 */
+.notif-badge { background:var(--danger); color:#fff; border-radius:50%; width:18px; height:18px; font-size:10px; font-weight:700; display:inline-flex; align-items:center; justify-content:center; margin-left:4px; }
+/* 상태기록 */
+.health-log-card { background:var(--navy2); border:1.5px solid rgba(255,255,255,0.12); border-radius:14px; padding:16px 20px; margin-bottom:10px; }
+/* 테마 토글 */
+.theme-toggle { background:rgba(255,255,255,0.08); border:none; color:var(--white); cursor:pointer; font-size:18px; padding:6px 10px; border-radius:8px; transition:all 0.2s; }
+.theme-toggle:hover { background:rgba(255,255,255,0.15); }
 </style>
 </head>
 <body>
@@ -461,6 +503,7 @@ select option { background:var(--navy2); }
         </div>
       </div>
       <button class="logout-btn" onclick="doLogout()">로그아웃</button>
+      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
     </div>
   </header>
 
@@ -470,6 +513,9 @@ select option { background:var(--navy2); }
     <div class="nav-item" data-page="myDrugs" onclick="goPage('myDrugs')"><span class="nav-icon">💊</span> 내 약 관리</div>
     <div class="nav-item" data-page="borrow" onclick="goPage('borrow')"><span class="nav-icon">🤝</span> 친구 약 빌리기</div>
     <div class="nav-item" data-page="record" onclick="goPage('record')"><span class="nav-icon">📋</span> 복약 기록</div>
+    <div class="nav-item" data-page="healthlog" onclick="goPage('healthlog')"><span class="nav-icon">📊</span> 상태 기록</div>
+    <div class="nav-item" data-page="dormitory" onclick="goPage('dormitory')"><span class="nav-icon">🏥</span> 사감실</div>
+    <div class="nav-item" data-page="chat" onclick="goPage('chat')"><span class="nav-icon">💬</span> 채팅<span class="notif-badge hidden" id="chatBadge">0</span></div>
     <div class="nav-item" data-page="ocr" onclick="goPage('ocr')"><span class="nav-icon">📷</span> 약 사진 검색</div>
     <div class="nav-item" data-page="health" onclick="goPage('health')"><span class="nav-icon">💡</span> 건강 정보</div>
     <div class="nav-item" data-page="contact" onclick="goPage('contact')"><span class="nav-icon">✉️</span> 개발자 문의</div>
@@ -483,7 +529,7 @@ select option { background:var(--navy2); }
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-bottom:4px">현대청운고등학교</div>
             <div style="font-size:20px;font-weight:900">안녕하세요, <span id="dashName" style="color:#90CAF9">-</span>님 👋</div>
-            <div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:2px">청운인의 건강한 기숙사 생활을 응원합니다!</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:2px">기숙사에서 밤늦게 갑자기 아파본 적 있죠? 약을 구할 수 없을 때 옆방 친구에게 빌린 경험, 한 번쯤 있을 거예요. 이름은 달라도 같은 성분이 들어있는 약을 함께 먹으면 문제가 생길 수 있어요. 이 위험을 직접 확인하고, 직접 해결책을 만들었습니다. 청운인이 만든, 청운인만을 위한 의약품 안전 서비스 💙</div>
           </div>
           <img src="data:image/jpeg;base64,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EEdYIK+yIDwcOzfQdNUU9RBpK1xzQyNkjkbTsDmuacggjkQRzXux6MYQjKAYWTSPJ05Gb1jVHDFFq2carq7JlERYm0IiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIDkoq22e5fq3+gi+eYpVUY7YaWrrdnOp6ekppKiaSCMMija5znHpWnADQSeHYpFp85t/XX4ka7+a3X2TfA1povQ/enqzyVu3qc31U+9LVnkrd/U5vqr6NSWGmXyqHzHYzV/hOTV3Mxxr65/mKb9YhV7VSbudLDfLZri5TV9mr6SJ1kmYJJ4HxtLjPEQ0F4AzgZwrrDrXDY3WjX0tVr2Tu+TyOtgupetU5oiKq4l4EREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREBjA7As4HYERM6nmlewMDsREQ96IREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQBERAEREAREQH/9k=" onerror="this.style.display='none'" style="position:absolute;right:-10px;bottom:-10px;width:160px;opacity:0.08;object-fit:contain">
         </div>
@@ -512,6 +558,18 @@ select option { background:var(--navy2); }
         <div style="font-size:20px;font-weight:800;margin-bottom:6px">증상 체크 & AI 복약 가이드</div>
         <div style="font-size:13px;color:var(--gray)">증상을 선택하면 AI가 적합한 약과 주의사항을 알려드려요</div>
       </div>
+      <div class="card" style="margin-bottom:20px;background:linear-gradient(135deg,rgba(21,101,192,0.2),rgba(13,71,161,0.1));border-color:rgba(100,181,246,0.3)">
+        <div style="font-size:13px;font-weight:700;color:#90CAF9;margin-bottom:10px">📌 즉시 대처법 바로 보기</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <button class="filter-chip" onclick="showQuickTip('두통')">🤕 두통</button>
+          <button class="filter-chip" onclick="showQuickTip('복통')">😣 복통</button>
+          <button class="filter-chip" onclick="showQuickTip('감기')">🤧 감기</button>
+          <button class="filter-chip" onclick="showQuickTip('생리통')">🌡️ 생리통</button>
+          <button class="filter-chip" onclick="showQuickTip('발열')">🔥 발열</button>
+          <button class="filter-chip" onclick="showQuickTip('소화불량')">🤢 소화불량</button>
+        </div>
+        <div id="quickTipBox" class="hidden" style="margin-top:14px;padding:14px;background:rgba(0,0,0,0.2);border-radius:12px;font-size:13px;line-height:1.8;color:#E2E8F0"></div>
+      </div>
       <div class="section-title">Step 1 — 증상 선택 (복수 선택 가능)</div>
       <div class="symptom-search">
         <span class="symptom-search-icon">🔎</span>
@@ -533,9 +591,13 @@ select option { background:var(--navy2); }
           <h3>🤖 AI 복약 가이드 <span class="tag tag-mint" style="font-size:11px">Claude</span></h3>
           <div class="ai-result-content" id="aiResultContent"></div>
         </div>
+        <div id="dangerDrugsBox" class="hidden" style="margin-top:16px;padding:16px 20px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:16px">
+          <div style="font-size:13px;font-weight:700;color:var(--danger);margin-bottom:10px">⚠️ 같이 먹으면 안 되는 약 조합</div>
+          <div id="dangerDrugsContent" style="font-size:13px;color:#CBD5E1;line-height:1.8;white-space:pre-wrap"></div>
+        </div>
         <div style="margin-top:20px">
           <div class="section-title">친구들이 가진 관련 약</div>
-          <div id="matchedFriendDrugs" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px"></div>
+          <div id="matchedFriendDrugs" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px"><div style="color:var(--gray);font-size:13px;padding:10px 0">AI 분석 후 표시돼요</div></div>
         </div>
       </div>
     </div>
@@ -607,21 +669,17 @@ select option { background:var(--navy2); }
         <div class="ocr-title">약 사진으로 검색하기</div>
         <div class="ocr-desc">약 이름을 모를 때! 약 사진이나 알약 모양으로 검색할 수 있는 공식 사이트로 이동해요.</div>
         <div class="ocr-links">
-          <a class="ocr-link-btn" href="https://nedrug.mfds.go.kr/pbp/CCBBB01/getItemDetail" target="_blank">
+          <a class="ocr-link-btn" href="https://nedrug.mfds.go.kr/index" target="_blank">
             <span class="ocr-link-icon">🏛️</span>
             <div class="ocr-link-text"><div class="ocr-link-name">식약처 의약품안전나라</div><div class="ocr-link-sub">낱알 식별 서비스 — 공식 정부 사이트</div></div>
             <span style="margin-left:auto;color:var(--gray)">→</span>
           </a>
-          <a class="ocr-link-btn" href="https://www.health.kr/searchDrug/search_drug.asp" target="_blank">
+          <a class="ocr-link-btn" href="https://health.kr/" target="_blank">
             <span class="ocr-link-icon">💊</span>
             <div class="ocr-link-text"><div class="ocr-link-name">약학정보원</div><div class="ocr-link-sub">알약 모양·색상으로 검색 가능</div></div>
             <span style="margin-left:auto;color:var(--gray)">→</span>
           </a>
-          <a class="ocr-link-btn" href="https://drug.naver.com" target="_blank">
-            <span class="ocr-link-icon">🔵</span>
-            <div class="ocr-link-text"><div class="ocr-link-name">네이버 의약품 검색</div><div class="ocr-link-sub">간편하게 약 정보 검색</div></div>
-            <span style="margin-left:auto;color:var(--gray)">→</span>
-          </a>
+
         </div>
       </div>
     </div>
@@ -632,6 +690,130 @@ select option { background:var(--navy2); }
         <div style="font-size:13px;color:var(--gray)">기숙사 학생을 위한 맞춤 건강 팁</div>
       </div>
       <div class="health-tips" id="healthTips"></div>
+    </div>
+
+    <!-- 사감실 비상약 현황 -->
+    <div id="page-dormitory" class="hidden">
+      <div style="margin-bottom:24px">
+        <div style="font-size:20px;font-weight:800;margin-bottom:6px">🏥 사감실 비상약 현황</div>
+        <div style="font-size:13px;color:var(--gray)">현재 사감실에 있는 비상약 목록이에요</div>
+      </div>
+      <div id="dormAdminPanel" class="hidden">
+        <div class="card" style="margin-bottom:20px;border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.05)">
+          <div class="section-title">⚙️ 관리자 모드</div>
+          <div style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap">
+            <input type="text" id="dormDrugName" placeholder="약 이름" style="flex:1;min-width:120px">
+            <input type="number" id="dormDrugQty" placeholder="수량" style="width:80px">
+            <select id="dormStatus" style="width:100px">
+              <option value="운영중">운영중</option>
+              <option value="품절">품절</option>
+              <option value="소진임박">소진임박</option>
+            </select>
+            <button class="btn btn-mint" onclick="addDormDrug()" style="padding:10px 16px">추가</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(255,255,255,0.03);border-radius:10px">
+            <span style="font-size:13px;color:var(--gray)">사감실 운영 상태:</span>
+            <label class="share-toggle"><input type="checkbox" id="dormOpenToggle" onchange="setDormOpen(this.checked)"><span class="share-slider"></span></label>
+            <span id="dormOpenLabel" style="font-size:13px;font-weight:600;color:var(--safe)">운영중</span>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:16px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px">
+          <div id="dormStatusBadge" style="padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:var(--safe)">🟢 운영중</div>
+          <div style="font-size:12px;color:var(--gray)">마지막 업데이트: <span id="dormLastUpdate">-</span></div>
+          <button class="btn btn-outline" style="padding:6px 12px;font-size:12px;margin-left:auto" onclick="toggleDormAdmin()">관리자</button>
+        </div>
+        <div id="dormDrugList"><div style="text-align:center;padding:30px;color:var(--gray)">비상약 정보를 불러오는 중...</div></div>
+      </div>
+    </div>
+
+    <!-- 나의 상태 기록 -->
+    <div id="page-healthlog" class="hidden">
+      <div style="margin-bottom:24px">
+        <div style="font-size:20px;font-weight:800;margin-bottom:6px">📊 나의 상태 기록</div>
+        <div style="font-size:13px;color:var(--gray)">"저번 생리통 때는 얼마나 아팠지?" 과거 내 상태를 기록하고 돌아봐요</div>
+      </div>
+      <div class="card" style="margin-bottom:20px">
+        <div class="section-title">새 상태 기록</div>
+        <div class="form-group">
+          <label class="form-label">증상/상태 *</label>
+          <input type="text" id="logSymptom" placeholder="예: 감기, 생리통, 두통, 컨디션 좋음">
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+          <div class="form-group">
+            <label class="form-label">심각도 (1~5)</label>
+            <select id="logSeverity">
+              <option value="1">1 - 거의 안 아픔</option>
+              <option value="2">2 - 약간 불편</option>
+              <option value="3" selected>3 - 보통</option>
+              <option value="4">4 - 꽤 아픔</option>
+              <option value="5">5 - 매우 심함</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">카테고리</label>
+            <select id="logCategory">
+              <option value="감기">감기</option>
+              <option value="생리통">생리통</option>
+              <option value="두통">두통</option>
+              <option value="복통">복통</option>
+              <option value="발열">발열</option>
+              <option value="컨디션">컨디션</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:12px">
+          <label class="form-label">메모</label>
+          <textarea id="logMemo" rows="2" placeholder="오늘 몸 상태에 대해 자세히 적어보세요..."></textarea>
+        </div>
+        <button class="btn btn-mint" style="width:100%;padding:13px;margin-top:14px" onclick="saveHealthLog()">📊 상태 기록하기</button>
+      </div>
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div class="section-title" style="margin-bottom:0">기록 히스토리</div>
+          <select id="logFilterCat" onchange="loadHealthLogs()" style="width:120px;padding:6px 10px;font-size:12px">
+            <option value="전체">전체</option>
+            <option value="감기">감기</option>
+            <option value="생리통">생리통</option>
+            <option value="두통">두통</option>
+            <option value="복통">복통</option>
+            <option value="발열">발열</option>
+            <option value="컨디션">컨디션</option>
+          </select>
+        </div>
+        <div id="healthLogList"><div style="text-align:center;padding:30px;color:var(--gray)">기록이 없어요</div></div>
+      </div>
+    </div>
+
+    <!-- 채팅 -->
+    <div id="page-chat" class="hidden">
+      <div style="margin-bottom:24px">
+        <div style="font-size:20px;font-weight:800;margin-bottom:6px">💬 채팅</div>
+        <div style="font-size:13px;color:var(--gray)">친구에게 약 빌리기 전에 먼저 채팅으로 물어봐요!</div>
+      </div>
+      <div id="chatRoomView">
+        <div style="display:flex;gap:10px;margin-bottom:16px">
+          <input type="text" id="chatSearchInput" placeholder="이름으로 채팅 상대 찾기..." oninput="searchChatUsers(this.value)" style="flex:1">
+        </div>
+        <div id="chatUserResults" style="margin-bottom:16px"></div>
+        <div class="section-title">최근 대화</div>
+        <div id="chatRoomList" class="chat-room-list"></div>
+      </div>
+      <div id="chatMessageView" class="hidden">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <button class="btn btn-outline" style="padding:8px 14px" onclick="closeChatRoom()">← 뒤로</button>
+          <div style="font-size:16px;font-weight:700" id="chatRoomTitle">-</div>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden">
+          <div class="chat-messages" id="chatMessages"></div>
+          <div class="chat-input-row" style="padding:12px 16px">
+            <input type="text" id="chatInput" placeholder="메시지 입력..." onkeydown="if(event.key==='Enter')sendChatMsg()">
+            <button class="btn btn-mint" style="padding:10px 18px" onclick="sendChatMsg()">전송</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="page-contact" class="hidden">
@@ -822,6 +1004,10 @@ function showMainApp() {
   document.getElementById('headerRoom').textContent=`${currentUser.floor} ${currentUser.room}`;
   document.getElementById('dashName').textContent=currentUser.name;
   buildSymptomGrid();buildHealthTips();goPage('dashboard');
+  applyTheme();
+  // 주기적 알림 체크
+  setInterval(checkNotifs, 15000);
+  checkNotifs();
 }
 
 function goPage(page) {
@@ -834,6 +1020,9 @@ function goPage(page) {
   if(page==='borrow')loadFriendDrugs();
   if(page==='record')loadRecords();
   if(page==='contact')loadContactList();
+  if(page==='dormitory')loadDormitory();
+  if(page==='healthlog')loadHealthLogs();
+  if(page==='chat')loadChatRooms();
 }
 
 async function loadDashboard() {
@@ -899,18 +1088,71 @@ async function runAICheck(){
   const box=document.getElementById('aiResultBox');
   const content=document.getElementById('aiResultContent');
   box.classList.remove('hidden');
-  content.innerHTML=`<div class="ai-typing"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div></div>`;
+
+  // TMI 목록
+  const TMI_LIST = [
+    '💡 TMI: 타이레놀(아세트아미노펜)은 1897년에 처음 합성됐어요. 100년이 넘는 역사를 가진 약!',
+    '💡 TMI: 청운인의 68.4%가 기숙사에서 친구 약을 빌려 먹은 경험이 있어요. (정주영학 탐구 결과)',
+    '💡 TMI: 이 서비스는 "친구 약 빌려 먹다 성분 중복으로 다치면 어쩌지?"라는 고민에서 시작됐어요.',
+    '💡 TMI: 약은 이름이 달라도 같은 성분일 수 있어요. 타이레놀과 판피린 모두 아세트아미노펜 성분 포함!',
+    '💡 TMI: 아스피린은 버드나무 껍질에서 발견된 살리실산을 개량해서 만들었어요.',
+    '💡 TMI: 약을 물이 아닌 주스나 우유와 함께 먹으면 흡수가 방해될 수 있어요.',
+    '💡 TMI: 두통의 70% 이상은 수분 부족이 원인일 수 있어요. 물 한 잔이 먼저!',
+    '💡 TMI: DUR(의약품 안전사용 서비스)는 약사·의사가 처방 시 성분 중복을 실시간으로 경고해주는 시스템이에요.',
+    '💡 TMI: 이부프로펜(부루펜)은 빈속에 먹으면 위장을 심하게 자극할 수 있어요. 꼭 식후에 먹기!',
+    '💡 TMI: 항히스타민제가 졸음을 유발하는 이유? 히스타민은 각성 유지에도 관여하거든요.',
+  ];
+  let tmiIdx = 0;
+  const tmiInterval = setInterval(() => {
+    content.innerHTML = `<div class="ai-typing"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div></div><div style="margin-top:12px;padding:12px 16px;background:rgba(255,255,255,0.05);border-radius:10px;font-size:13px;color:#90CAF9;line-height:1.7">${TMI_LIST[tmiIdx % TMI_LIST.length]}</div>`;
+    tmiIdx++;
+  }, 2500);
+  content.innerHTML = `<div class="ai-typing"><div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div></div><div style="margin-top:12px;padding:12px 16px;background:rgba(255,255,255,0.05);border-radius:10px;font-size:13px;color:#90CAF9;line-height:1.7">${TMI_LIST[0]}</div>`;
+
   box.scrollIntoView({behavior:'smooth',block:'start'});
-  const prompt=`당신은 기숙사 학생들을 위한 친절하고 전문적인 복약 안내 AI입니다.\n\n학생 정보:\n- 증상: ${selectedSymptoms.join(', ')}\n- 오늘 이미 복용한 약: ${alreadyMeds.length>0?alreadyMeds.join(', '):'없음'}\n\n다음 형식으로 답변해주세요:\n\n1. 📋 증상 분석\n2. 💊 추천 약물 (2~3가지, 주성분·복용법 포함)\n3. ⚠️ 복용 주의사항 (학생 친화적 표현)\n4. 🌿 약 없이 해볼 수 있는 것\n5. 🚨 이럴 땐 사감실 가세요\n\n한국어로, 이모지 활용해 읽기 쉽게 작성해주세요.`;
+  const prompt=`당신은 기숙사 학생들을 위한 친절하고 전문적인 복약 안내 AI입니다.
+
+학생 정보:
+- 증상: ${selectedSymptoms.join(', ')}
+- 오늘 이미 복용한 약: ${alreadyMeds.length>0?alreadyMeds.join(', '):'없음'}
+
+반드시 다음 형식으로 답변해주세요 (각 섹션 제목 그대로 포함):
+
+1. 📋 증상 분석
+(증상에 대한 간단한 설명)
+
+2. 💊 추천 약물
+(2~3가지, 주성분·복용법 포함)
+
+3. ⚠️ 복용 주의사항
+(학생 친화적 표현으로)
+
+4. 🚫 같이 먹으면 안 되는 약 조합
+(이미 복용한 약과 추천 약물 간의 위험한 조합을 구체적으로 설명. 없으면 "특별한 금기 조합 없음"이라고 작성)
+
+5. 🌿 약 없이 해볼 수 있는 것
+
+6. 🚨 이럴 땐 사감실 가세요
+
+한국어로, 이모지 활용해 읽기 쉽게 작성해주세요.`;
   try {
     const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1200,messages:[{role:'user',content:prompt}]})
     });
+    clearInterval(tmiInterval);
     const data=await res.json();
-    content.textContent=data.content.map(c=>c.text||'').join('');
+    const fullText=data.content.map(c=>c.text||'').join('');
+    // 같이 먹으면 안 되는 약 섹션 분리
+    const dangerMatch=fullText.match(/4\.\s*🚫[^\n]*\n([\s\S]*?)(?=5\.|$)/);
+    if(dangerMatch&&dangerMatch[1].trim()&&!dangerMatch[1].includes('특별한 금기 조합 없음')){
+      document.getElementById('dangerDrugsBox').classList.remove('hidden');
+      document.getElementById('dangerDrugsContent').textContent=dangerMatch[1].trim();
+    }
+    content.textContent=fullText;
     loadMatchedFriendDrugs();
   } catch(e) {
+    clearInterval(tmiInterval);
     content.textContent='⚠️ AI 연결에 실패했습니다. 잠시 후 다시 시도해주세요.\n\n일반 안내:\n• 두통/생리통: 타이레놀 권장\n• 복통/소화불량: 훼스탈, 베아제\n• 감기몸살: 충분한 수분과 휴식\n• 증상이 심하면 사감실에 도움 요청하세요.';
   }
 }
@@ -924,15 +1166,18 @@ async function loadMatchedFriendDrugs(){
     const drugs=await storageGet(key,true)||[];
     const users=await storageGet('users',true)||{};
     const u=users[uid];if(!u)continue;
-    drugs.filter(d=>d.share).forEach(d=>allShared.push({...d,ownerName:u.name,ownerRoom:`${u.floor} ${u.room}`}));
+    drugs.filter(d=>d.share).forEach(d=>allShared.push({...d,ownerId:uid,ownerName:u.name,ownerRoom:`${u.floor} ${u.room}`,ownerFloor:u.floor}));
   }
   if(allShared.length===0){container.innerHTML=`<div style="color:var(--gray);font-size:13px">아직 공유된 약이 없어요</div>`;return;}
-  container.innerHTML=allShared.slice(0,6).map(d=>`
+  const sameFloor=allShared.filter(d=>d.ownerFloor===currentUser.floor);
+  const others=allShared.filter(d=>d.ownerFloor!==currentUser.floor);
+  const sorted=[...sameFloor,...others].slice(0,6);
+  container.innerHTML=sorted.map(d=>`
     <div class="friend-drug-card">
-      <div class="friend-info"><div class="friend-avatar">${d.ownerName[0]}</div><div><div class="friend-name-text">${d.ownerName}</div><div class="friend-room-text">${d.ownerRoom}</div></div></div>
+      <div class="friend-info"><div class="friend-avatar">${d.ownerName[0]}</div><div><div class="friend-name-text">${d.ownerName}${d.ownerFloor===currentUser.floor?` <span style="font-size:10px;background:rgba(16,185,129,0.15);color:var(--safe);padding:2px 6px;border-radius:6px">같은 층</span>`:''}</div><div class="friend-room-text">${d.ownerRoom}</div></div></div>
       <div class="friend-drug-name">${d.name}</div>
       <div class="friend-drug-qty">${d.qty||''}</div>
-      <button class="btn btn-mint borrow-btn" onclick="openBorrowModal('${d.ownerName}','${d.ownerRoom}','${d.name}')">빌리러 가기 →</button>
+      <button class="btn btn-mint borrow-btn" onclick="openBorrowModal('${d.ownerId}','${d.ownerName}','${d.ownerRoom}','${d.name}')">빌리러 가기 →</button>
     </div>`).join('');
 }
 
@@ -994,8 +1239,14 @@ async function loadFriendDrugs(){
     const drugs=await storageGet(key,true)||[];
     const users=await storageGet('users',true)||{};
     const u=users[uid];if(!u)continue;
-    drugs.filter(d=>d.share).forEach(d=>allShared.push({...d,ownerName:u.name,ownerRoom:`${u.floor} ${u.room}`}));
+    drugs.filter(d=>d.share).forEach(d=>allShared.push({...d,ownerId:uid,ownerName:u.name,ownerRoom:`${u.floor} ${u.room}`,ownerFloor:u.floor}));
   }
+  // 같은 층 먼저
+  allShared.sort((a,b)=>{
+    const sa=a.ownerFloor===currentUser.floor?0:1;
+    const sb=b.ownerFloor===currentUser.floor?0:1;
+    return sa-sb;
+  });
   let filtered=allShared;
   if(borrowSearch)filtered=filtered.filter(d=>d.name.includes(borrowSearch));
   if(borrowFilter!=='전체'){
@@ -1005,14 +1256,16 @@ async function loadFriendDrugs(){
   }
   const grid=document.getElementById('friendDrugGrid');
   if(filtered.length===0){grid.innerHTML=`<div class="no-drugs" style="grid-column:1/-1"><div class="no-drugs-icon">🤝</div><div class="no-drugs-text">공유된 약이 없습니다</div></div>`;return;}
-  grid.innerHTML=filtered.map(d=>`
-    <div class="friend-drug-card">
-      <div class="friend-info"><div class="friend-avatar">${d.ownerName[0]}</div><div><div class="friend-name-text">${d.ownerName}</div><div class="friend-room-text">${d.ownerRoom}</div></div></div>
+  grid.innerHTML=filtered.map(d=>{
+    const sameFloor=d.ownerFloor===currentUser.floor;
+    return `<div class="friend-drug-card" style="${sameFloor?'border-color:rgba(16,185,129,0.4)':''}">
+      <div class="friend-info"><div class="friend-avatar">${d.ownerName[0]}</div><div><div class="friend-name-text">${d.ownerName}${sameFloor?` <span style="font-size:10px;background:rgba(16,185,129,0.15);color:var(--safe);padding:2px 6px;border-radius:6px">같은 층</span>`:''}</div><div class="friend-room-text">${d.ownerRoom}</div></div></div>
       <div class="friend-drug-name">${d.name}</div>
       <div class="friend-drug-qty">${d.qty||'수량 미기재'}</div>
       ${d.note?`<div style="font-size:12px;color:var(--gray2);margin-bottom:8px">${d.note}</div>`:''}
-      <button class="btn btn-mint borrow-btn" onclick="openBorrowModal('${d.ownerName}','${d.ownerRoom}','${d.name}')">빌리러 가기 →</button>
-    </div>`).join('');
+      <button class="btn btn-mint borrow-btn" onclick="openBorrowModal('${d.ownerId}','${d.ownerName}','${d.ownerRoom}','${d.name}')">빌리러 가기 →</button>
+    </div>`;
+  }).join('');
 }
 
 function setBorrowFilter(f,el){
@@ -1023,20 +1276,42 @@ function setBorrowFilter(f,el){
 function filterFriendDrugs(v){borrowSearch=v;loadFriendDrugs();}
 
 let borrowTarget=null;
-function openBorrowModal(name,room,drug){
-  borrowTarget={name,room,drug};
+async function openBorrowModal(ownerId,name,room,drug){
+  borrowTarget={ownerId,name,room,drug};
+  // 같은 층 친구 추천
+  const myFloor = currentUser.floor;
+  const ownerFloor = room.split('층')[0] + '층';
+  const sameFloor = myFloor && ownerFloor && myFloor===ownerFloor;
   document.getElementById('borrowModalContent').innerHTML=`
     <div style="font-size:14px;line-height:1.8;color:#CBD5E1">
       <div style="background:rgba(21,101,192,0.08);border:1px solid rgba(21,101,192,0.2);border-radius:12px;padding:16px;margin-bottom:16px">
         <div style="font-size:16px;font-weight:700;margin-bottom:4px">${drug}</div>
         <div style="font-size:13px;color:var(--gray)">👤 ${name} · 📍 ${room}</div>
+        ${sameFloor?`<div style="margin-top:6px;font-size:12px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);color:var(--safe);padding:4px 10px;border-radius:8px;display:inline-block">🏠 같은 층 친구! 바로 옆에 있어요</div>`:''}
       </div>
       <p>직접 해당 호실을 방문해서 정중하게 부탁해보세요!</p>
       <p style="margin-top:8px;color:var(--warn);font-size:13px">⚠️ 빌리기 전에 AI 증상 체크로 해당 약이 안전한지 확인하세요.</p>
+      <p style="margin-top:8px;color:#90CAF9;font-size:12px">📨 빌리기 확인 시 ${name}님에게 알림이 전송돼요.</p>
     </div>`;
   document.getElementById('borrowModal').classList.remove('hidden');
 }
-function confirmBorrow(){showToast(`📍 ${borrowTarget.room} ${borrowTarget.name}님께 방문해보세요!`);closeModal('borrowModal');}
+async function confirmBorrow(){
+  if(borrowTarget && borrowTarget.ownerId){
+    // 알림 전송
+    const notifs = await storageGet(`notifs:${borrowTarget.ownerId}`,true)||[];
+    notifs.push({
+      id:Date.now(),
+      from: currentUser.name,
+      fromRoom: `${currentUser.floor} ${currentUser.room}`,
+      drug: borrowTarget.drug,
+      time: new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}),
+      read: false
+    });
+    await storageSet(`notifs:${borrowTarget.ownerId}`, notifs, true);
+  }
+  showToast(`📍 ${borrowTarget.room} ${borrowTarget.name}님께 방문해보세요!`);
+  closeModal('borrowModal');
+}
 function closeModal(id){document.getElementById(id).classList.add('hidden');}
 
 async function addRecord(){
@@ -1074,6 +1349,22 @@ async function deleteRecord(id){
   records=records.filter(r=>r.id!==id);
   await storageSet(`records:${currentUser.id}`,records);
   showToast('삭제되었습니다');loadRecords();
+}
+
+function showQuickTip(symptom) {
+  const TIPS = {
+    '두통': '💊 추천약: 타이레놀(아세트아미노펜) 500mg\n⏰ 복용: 식후 1~2정, 4~6시간 간격\n🌿 비약 대처: 따뜻한 물 500ml 마시기, 어두운 곳에서 10분 휴식, 눈·목 스트레칭\n⚠️ 주의: 게보린·판피린 등과 함께 먹으면 성분 중복 위험!\n🚨 이럴 땐 사감실: 38도 이상 발열 동반, 갑작스러운 극심한 두통',
+    '복통': '💊 추천약: 훼스탈(소화효소), 베아제, 까스활명수\n⏰ 복용: 식후 복용 권장\n🌿 비약 대처: 따뜻한 물 마시기, 배 따뜻하게 하기, 가스 배출 자세\n⚠️ 주의: 원인 모를 복통에 진통제 먹으면 오히려 증상 가릴 수 있음\n🚨 이럴 땐 사감실: 극심한 복통, 구토 동반, 2시간 이상 지속',
+    '감기': '💊 추천약: 판피린T(해열·진통), 화이투벤, 콜대원\n⏰ 복용: 설명서 확인 후 용량 지키기\n🌿 비약 대처: 따뜻한 물·꿀물 자주 마시기, 충분한 수면, 목 따뜻하게\n⚠️ 주의: 감기약+타이레놀 함께 먹으면 아세트아미노펜 과다복용 위험!\n🚨 이럴 땐 사감실: 38.5도 이상 고열, 호흡 곤란',
+    '생리통': '💊 추천약: 이부프로펜(부루펜·애드빌), 타이레놀\n⏰ 복용: 이부프로펜은 반드시 식후! 6~8시간 간격\n🌿 비약 대처: 따뜻한 핫팩 배에 대기, 가벼운 스트레칭, 따뜻한 물 마시기\n⚠️ 주의: 빈속에 이부프로펜 먹으면 위장 손상 위험!\n🚨 이럴 땐 사감실: 너무 심해서 일상생활 불가, 구토·실신 동반',
+    '발열': '💊 추천약: 타이레놀(아세트아미노펜) — 해열 효과 우수\n⏰ 복용: 4~6시간 간격, 하루 4회 이하\n🌿 비약 대처: 미지근한 수건으로 이마·겨드랑이 냉찜질, 수분 충분히 섭취\n⚠️ 주의: 38.5도 이상이면 즉시 사감실 방문!\n🚨 이럴 땐 사감실: 38.5도 이상, 3일 이상 지속, 다른 증상 동반',
+    '소화불량': '💊 추천약: 훼스탈(소화효소), 겔포스(위산중화), 베아제\n⏰ 복용: 훼스탈·베아제는 식후, 겔포스는 식간(식사 2시간 후)\n🌿 비약 대처: 소식하기, 따뜻한 물 천천히 마시기, 가벼운 산책\n⚠️ 주의: 소화불량에 진통제 먹으면 위장 더 나빠짐\n🚨 이럴 땐 사감실: 구토, 혈변, 극심한 복통 동반',
+  };
+  const box = document.getElementById('quickTipBox');
+  box.textContent = TIPS[symptom] || '';
+  box.classList.remove('hidden');
+  document.querySelectorAll('#page-symptom .filter-chip').forEach(c=>c.classList.remove('active'));
+  event.target.classList.add('active');
 }
 
 function buildHealthTips(){
@@ -1146,6 +1437,237 @@ async function loadContactList() {
     </div>`).join('');
 }
 
+// ── 테마 토글 ──────────────────────────────────────
+function toggleTheme(){
+  const isLight=document.body.classList.toggle('light-mode');
+  document.getElementById('themeBtn').textContent=isLight?'☀️':'🌙';
+  localStorage.setItem('theme',isLight?'light':'dark');
+}
+function applyTheme(){
+  const t=localStorage.getItem('theme');
+  if(t==='light'){document.body.classList.add('light-mode');document.getElementById('themeBtn').textContent='☀️';}
+}
+
+// ── 알림 확인 ──────────────────────────────────────
+async function checkNotifs(){
+  const notifs=await storageGet(`notifs:${currentUser.id}`,true)||[];
+  const unread=notifs.filter(n=>!n.read).length;
+  const badge=document.getElementById('chatBadge');
+  if(unread>0){badge.textContent=unread;badge.classList.remove('hidden');}
+  else badge.classList.add('hidden');
+}
+
+// ── 사감실 ──────────────────────────────────────
+let dormAdminMode=false;
+function toggleDormAdmin(){
+  dormAdminMode=!dormAdminMode;
+  document.getElementById('dormAdminPanel').classList.toggle('hidden',!dormAdminMode);
+}
+async function loadDormitory(){
+  const data=await storageGet('dormitory',true)||{open:true,drugs:[],updated:'-'};
+  document.getElementById('dormStatusBadge').innerHTML=data.open?'🟢 운영중':'🔴 운영 종료';
+  document.getElementById('dormStatusBadge').style.background=data.open?'rgba(16,185,129,0.1)':'rgba(239,68,68,0.1)';
+  document.getElementById('dormStatusBadge').style.borderColor=data.open?'rgba(16,185,129,0.3)':'rgba(239,68,68,0.3)';
+  document.getElementById('dormStatusBadge').style.color=data.open?'var(--safe)':'var(--danger)';
+  document.getElementById('dormLastUpdate').textContent=data.updated;
+  document.getElementById('dormOpenToggle').checked=data.open;
+  document.getElementById('dormOpenLabel').textContent=data.open?'운영중':'운영 종료';
+  const list=document.getElementById('dormDrugList');
+  if(!data.drugs||data.drugs.length===0){list.innerHTML=`<div style="text-align:center;padding:30px;color:var(--gray);font-size:13px">등록된 비상약이 없어요</div>`;return;}
+  list.innerHTML=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">${data.drugs.map(d=>`
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:14px">
+      <div style="font-size:15px;font-weight:700;margin-bottom:6px">${d.name}</div>
+      <div style="font-size:13px;color:var(--gray);margin-bottom:8px">수량: ${d.qty}</div>
+      <span class="tag ${d.status==='운영중'?'tag-green':d.status==='소진임박'?'tag-yellow':'tag-red'}">${d.status}</span>
+      ${dormAdminMode?`<button class="btn btn-danger" style="padding:4px 8px;font-size:11px;margin-top:8px;width:100%" onclick="deleteDormDrug(${d.id})">삭제</button>`:''}
+    </div>`).join('')}</div>`;
+}
+async function addDormDrug(){
+  const name=document.getElementById('dormDrugName').value.trim();
+  const qty=document.getElementById('dormDrugQty').value.trim();
+  const status=document.getElementById('dormStatus').value;
+  if(!name){showToast('약 이름을 입력하세요');return;}
+  const data=await storageGet('dormitory',true)||{open:true,drugs:[]};
+  data.drugs.push({id:Date.now(),name,qty:qty||'미기재',status});
+  data.updated=new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+  await storageSet('dormitory',data,true);
+  document.getElementById('dormDrugName').value='';
+  document.getElementById('dormDrugQty').value='';
+  showToast('✅ 추가됐어요!');loadDormitory();
+}
+async function deleteDormDrug(id){
+  const data=await storageGet('dormitory',true)||{open:true,drugs:[]};
+  data.drugs=data.drugs.filter(d=>d.id!==id);
+  data.updated=new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+  await storageSet('dormitory',data,true);
+  showToast('삭제됐어요');loadDormitory();
+}
+async function setDormOpen(val){
+  const data=await storageGet('dormitory',true)||{open:true,drugs:[]};
+  data.open=val;
+  data.updated=new Date().toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
+  await storageSet('dormitory',data,true);
+  document.getElementById('dormOpenLabel').textContent=val?'운영중':'운영 종료';
+  showToast(val?'🟢 운영중으로 변경됐어요':'🔴 운영 종료로 변경됐어요');
+  loadDormitory();
+}
+
+// ── 나의 상태 기록 ──────────────────────────────────────
+async function saveHealthLog(){
+  const symptom=document.getElementById('logSymptom').value.trim();
+  if(!symptom){showToast('증상/상태를 입력해주세요');return;}
+  const severity=document.getElementById('logSeverity').value;
+  const category=document.getElementById('logCategory').value;
+  const memo=document.getElementById('logMemo').value.trim();
+  const logs=await storageGet(`healthlog:${currentUser.id}`)||[];
+  const now=new Date();
+  logs.push({id:Date.now(),symptom,severity:parseInt(severity),category,memo,
+    date:now.toLocaleDateString('ko-KR',{year:'numeric',month:'numeric',day:'numeric'}),
+    time:now.toLocaleString('ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'})});
+  await storageSet(`healthlog:${currentUser.id}`,logs);
+  document.getElementById('logSymptom').value='';
+  document.getElementById('logMemo').value='';
+  showToast('📊 상태가 기록됐어요!');loadHealthLogs();
+}
+async function loadHealthLogs(){
+  const logs=await storageGet(`healthlog:${currentUser.id}`)||[];
+  const cat=document.getElementById('logFilterCat')?.value||'전체';
+  const filtered=cat==='전체'?logs:logs.filter(l=>l.category===cat);
+  const el=document.getElementById('healthLogList');
+  if(filtered.length===0){el.innerHTML=`<div style="text-align:center;padding:30px;color:var(--gray);font-size:13px">기록이 없어요</div>`;return;}
+  // 통계
+  const sameCat=logs.filter(l=>l.category===cat||cat==='전체');
+  const avgSev=sameCat.length>0?(sameCat.reduce((a,b)=>a+b.severity,0)/sameCat.length).toFixed(1):'0';
+  const statHtml=`<div style="background:rgba(21,101,192,0.08);border:1px solid rgba(21,101,192,0.2);border-radius:12px;padding:14px;margin-bottom:16px;display:flex;gap:20px">
+    <div style="text-align:center"><div style="font-size:22px;font-weight:900;color:#64B5F6">${sameCat.length}</div><div style="font-size:11px;color:var(--gray)">총 기록</div></div>
+    <div style="text-align:center"><div style="font-size:22px;font-weight:900;color:#64B5F6">${avgSev}</div><div style="font-size:11px;color:var(--gray)">평균 심각도</div></div>
+    <div style="text-align:center"><div style="font-size:22px;font-weight:900;color:#64B5F6">${sameCat.filter(l=>l.severity>=4).length}</div><div style="font-size:11px;color:var(--gray)">심한 날</div></div>
+  </div>`;
+  const sevEmoji=['','😊','🙂','😐','😣','😫'];
+  el.innerHTML=statHtml+filtered.slice().reverse().map(l=>`
+    <div class="health-log-card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div>
+          <span class="tag tag-blue" style="font-size:11px">${l.category}</span>
+          <span style="font-size:18px;margin-left:8px">${sevEmoji[l.severity]||'😐'}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:11px;color:var(--gray2)">${l.time}</span>
+          <button class="record-delete" onclick="deleteHealthLog(${l.id})">🗑</button>
+        </div>
+      </div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:4px">${l.symptom}</div>
+      <div style="font-size:12px;color:var(--gray)">심각도: ${'●'.repeat(l.severity)}${'○'.repeat(5-l.severity)} (${l.severity}/5)</div>
+      ${l.memo?`<div style="font-size:13px;color:var(--gray2);margin-top:6px;line-height:1.5">${l.memo}</div>`:''}
+    </div>`).join('');
+}
+async function deleteHealthLog(id){
+  let logs=await storageGet(`healthlog:${currentUser.id}`)||[];
+  logs=logs.filter(l=>l.id!==id);
+  await storageSet(`healthlog:${currentUser.id}`,logs);
+  showToast('삭제됐어요');loadHealthLogs();
+}
+
+// ── 채팅 ──────────────────────────────────────
+let currentChatWith=null;
+let chatInterval=null;
+async function searchChatUsers(query){
+  const el=document.getElementById('chatUserResults');
+  if(!query){el.innerHTML='';return;}
+  const users=await storageGet('users',true)||{};
+  const results=Object.entries(users).filter(([id,u])=>id!==currentUser.id&&(u.name.includes(query)||u.room.includes(query)));
+  if(results.length===0){el.innerHTML=`<div style="color:var(--gray);font-size:13px;padding:10px">검색 결과가 없어요</div>`;return;}
+  el.innerHTML=results.map(([id,u])=>`
+    <div class="chat-room-item" onclick="openChatRoom('${id}','${u.name}','${u.floor} ${u.room}')">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="friend-avatar">${u.name[0]}</div>
+        <div><div style="font-size:14px;font-weight:600">${u.name}</div><div style="font-size:12px;color:var(--gray)">${u.floor} ${u.room}</div></div>
+      </div>
+      <span style="color:var(--mint);font-size:13px">채팅 →</span>
+    </div>`).join('');
+}
+async function loadChatRooms(){
+  // 알림도 확인
+  await checkNotifs();
+  const notifs=await storageGet(`notifs:${currentUser.id}`,true)||[];
+  const unread=notifs.filter(n=>!n.read);
+  const users=await storageGet('users',true)||{};
+  // 최근 채팅 목록
+  const keys=await storageList(`chat:`,true);
+  const myChats=keys.filter(k=>k.includes(currentUser.id));
+  const el=document.getElementById('chatRoomList');
+  if(myChats.length===0&&unread.length===0){el.innerHTML=`<div style="color:var(--gray);font-size:13px;padding:20px 0">아직 채팅이 없어요. 위에서 친구를 검색해 먼저 대화를 시작해보세요!</div>`;return;}
+  // 약 빌리기 알림도 표시
+  const notifHtml=unread.length>0?`<div style="margin-bottom:12px">${unread.map(n=>`
+    <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:12px;padding:12px 16px;margin-bottom:8px">
+      <div style="font-size:13px;font-weight:700;margin-bottom:4px">💊 약 빌리기 요청</div>
+      <div style="font-size:12px;color:var(--gray)">${n.from} (${n.fromRoom})님이 <b>${n.drug}</b>를 빌리고 싶어해요</div>
+      <div style="font-size:11px;color:var(--gray2);margin-top:4px">${n.time}</div>
+    </div>`).join('')}</div>`:'';
+  const chatHtml=myChats.map(k=>{
+    const ids=k.replace('chat:','').split('_');
+    const otherId=ids.find(id=>id!==currentUser.id);
+    const u=users[otherId];if(!u)return'';
+    return `<div class="chat-room-item" onclick="openChatRoom('${otherId}','${u.name}','${u.floor} ${u.room}')">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="friend-avatar">${u.name[0]}</div>
+        <div><div style="font-size:14px;font-weight:600">${u.name}</div><div style="font-size:12px;color:var(--gray)">${u.floor} ${u.room}</div></div>
+      </div>
+      <span style="color:var(--mint);font-size:13px">→</span>
+    </div>`;
+  }).join('');
+  el.innerHTML=notifHtml+chatHtml;
+  // 알림 읽음 처리
+  if(unread.length>0){
+    const allNotifs=notifs.map(n=>({...n,read:true}));
+    await storageSet(`notifs:${currentUser.id}`,allNotifs,true);
+    document.getElementById('chatBadge').classList.add('hidden');
+  }
+}
+function getChatKey(uid1,uid2){
+  return 'chat:'+[uid1,uid2].sort().join('_');
+}
+async function openChatRoom(otherId,name,room){
+  currentChatWith={id:otherId,name,room};
+  document.getElementById('chatRoomView').classList.add('hidden');
+  document.getElementById('chatMessageView').classList.remove('hidden');
+  document.getElementById('chatRoomTitle').textContent=`${name} · ${room}`;
+  await renderChatMessages();
+  if(chatInterval)clearInterval(chatInterval);
+  chatInterval=setInterval(renderChatMessages,3000);
+}
+function closeChatRoom(){
+  if(chatInterval)clearInterval(chatInterval);
+  currentChatWith=null;
+  document.getElementById('chatMessageView').classList.add('hidden');
+  document.getElementById('chatRoomView').classList.remove('hidden');
+  loadChatRooms();
+}
+async function renderChatMessages(){
+  if(!currentChatWith)return;
+  const key=getChatKey(currentUser.id,currentChatWith.id);
+  const msgs=await storageGet(key,true)||[];
+  const el=document.getElementById('chatMessages');
+  el.innerHTML=msgs.map(m=>`
+    <div class="chat-msg ${m.from===currentUser.id?'mine':''}">
+      ${m.from!==currentUser.id?`<div class="friend-avatar" style="width:28px;height:28px;font-size:11px;flex-shrink:0">${currentChatWith.name[0]}</div>`:''}
+      <div>
+        <div class="chat-bubble">${m.text}</div>
+        <div style="font-size:10px;color:var(--gray2);margin-top:2px;${m.from===currentUser.id?'text-align:right':''}">${m.time}</div>
+      </div>
+    </div>`).join('');
+  el.scrollTop=el.scrollHeight;
+}
+async function sendChatMsg(){
+  const inp=document.getElementById('chatInput');
+  const text=inp.value.trim();if(!text||!currentChatWith)return;
+  const key=getChatKey(currentUser.id,currentChatWith.id);
+  const msgs=await storageGet(key,true)||[];
+  msgs.push({from:currentUser.id,text,time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})});
+  await storageSet(key,msgs,true);
+  inp.value='';
+  await renderChatMessages();
+}
 function showToast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;t.classList.add('show');
